@@ -7,10 +7,10 @@ function EmissionForm() {
     method: "",
   });
   
-  const vehicleEfficiencies = {
-    car: 1 / 25, 
+  const fuelConsumption = {
+    car: 0.4, 
     bike: 0,
-    muni: 1.47,
+    muni: 0.147,
     caltrain: 0.052
   };
 
@@ -26,16 +26,26 @@ function EmissionForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const emissions = calculateEmissions(formData.distance);
+    const emissions = calculateEmissions(formData.distance, formData.method);
     setEmissionResult(emissions);
 
     console.log(formData);
   };
 
-  const calculateEmissions = (distance) => {
-    const CO2EmissionsKg = (distance / 25) * 8.89 * Math.pow(10, -3);
-    return CO2EmissionsKg.toFixed(4);
+  const calculateEmissions = (distance, method) => {
+    const kgPerGallon = 8.89;
+    let CO2EmissionsKg;
+  
+    if (method === "bike") {
+      CO2EmissionsKg = 0;
+    } else {
+      const gallonsPerMile = fuelConsumption[method];
+      CO2EmissionsKg = distance * gallonsPerMile * kgPerGallon;
+    }
+    
+    return CO2EmissionsKg.toFixed(3);
   };
+  
 
   return (
     <div>
@@ -67,9 +77,8 @@ function EmissionForm() {
           Travel Method:
           <select name="method" value={formData.method} onChange={handleChange}>
             <option value="">Select your travel method</option>
-            <option value="walk">Walk</option>
             <option value="car">Car</option>
-            <option value="bike">Bike</option>
+            <option value="bike">Bike / Walk</option>
             <option value="muni">Muni</option>
             <option value="caltrain">Caltrain</option>
           </select>
