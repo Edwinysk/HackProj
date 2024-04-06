@@ -97,7 +97,7 @@ function EmissionForm() {
           src={headerpic}
           alt="GoEco Logo"
           className="logo display-4"
-          style={{width: "400px", height: "auto"}}
+          style={{width: "600px", height: "auto"}}
         />
       </div>
       {/* Form display */}
