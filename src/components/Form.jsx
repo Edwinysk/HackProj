@@ -38,6 +38,7 @@ function EmissionForm() {
 
   return (
     <div>
+      <h1>GoEco - San Francisco</h1> {/* Title */}
       <form onSubmit={handleSubmit}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <label style={{ marginRight: '10px' }}>
