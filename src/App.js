@@ -1,6 +1,6 @@
-import React from 'react';
-import './App.css';
-import EmissionForm from './components/Form'; 
+import React from "react";
+import "./App.css";
+import EmissionForm from "./components/Form";
 
 function App() {
   return (
@@ -8,6 +8,9 @@ function App() {
       <header className="App-header">
         <EmissionForm />
       </header>
+      <footer className="App-footer">
+        <div className="container">{/* Footer content goes here */}</div>
+      </footer>
     </div>
   );
 }
