@@ -8,10 +8,10 @@ function EmissionForm() {
   });
   
   const vehicleEfficiencies = {
-    car: 25, 
+    car: 1 / 25, 
     bike: 0,
-    muni: 15,
-    caltrain: 2.5
+    muni: 1.47,
+    caltrain: 0.052
   };
 
   const [emissionResult, setEmissionResult] = useState(null);
