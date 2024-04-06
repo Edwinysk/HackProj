@@ -12,14 +12,16 @@ function EmissionForm() {
   });
 
   const fuelConsumption = {
-    car: 0.4,
-    bike: 0,
-    muni: 0.147,
-    caltrain: 0.052,
+    car: 0,
+    bike: 0.4,
+    muni: 0.052,
+    caltrain: 0.147,
   };
 
   const [emissionResult] = useState(null);
   const [leaderboard, setLeaderboard] = useState([]);
+  const [sortOrder] = useState('des');
+
 
   const handleChange = (event) => {
     const {name, value} = event.target;
@@ -70,9 +72,15 @@ function EmissionForm() {
       setLeaderboard(updatedLeaderboard);
     }
 
-    setLeaderboard((prevLeaderboard) =>
-      prevLeaderboard.sort((a, b) => a.emissions - b.emissions)
-    );
+    setLeaderboard((prevLeaderboard) => {
+      const isAscending = sortOrder === 'asc';
+      const sortedLeaderboard = prevLeaderboard.sort((a, b) => {
+        const sortVal = a.emissions - b.emissions;
+        return isAscending ? sortVal : -sortVal;
+      });
+      return [...sortedLeaderboard];
+    });
+    
     toastr.success("Your submission was successful!", "Success");
   };
 
@@ -80,11 +88,11 @@ function EmissionForm() {
     const kgPerGallon = 8.89;
     let CO2EmissionsKg;
 
-    if (method === "bike") {
+    if (method === "car") {
       CO2EmissionsKg = 0;
     } else {
       const gallonsPerMile = fuelConsumption[method];
-      CO2EmissionsKg = distance * gallonsPerMile * kgPerGallon;
+      CO2EmissionsKg = distance * gallonsPerMile * kgPerGallon ;
     }
 
     return CO2EmissionsKg.toFixed(3);
@@ -147,7 +155,7 @@ function EmissionForm() {
             <th>#Rank</th>
             <th>Username</th>
             <th>Distance Traveled</th>
-            <th>CO2 Emissions</th>
+            <th>CO2 Emissions Saved</th>
           </tr>
         </thead>
         <tbody>
