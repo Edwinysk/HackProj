@@ -1,23 +1,26 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import toastr from "toastr";
+import "toastr/build/toastr.min.css";
 
 function EmissionForm() {
   const [formData, setFormData] = useState({
     distance: "",
-    // to: "",
     method: "",
+    name: "",
   });
   
   const fuelConsumption = {
     car: 0.4, 
     bike: 0,
     muni: 0.147,
-    caltrain: 0.052
+    caltrain: 0.052,
   };
 
-  const [emissionResult, setEmissionResult] = useState(null);
+  const [emissionResult] = useState(null);
+  const [leaderboard, setLeaderboard] = useState([]); 
 
   const handleChange = (event) => {
-    const {name, value} = event.target;
+    const { name, value } = event.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: value,
@@ -26,10 +29,37 @@ function EmissionForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const emissions = calculateEmissions(formData.distance, formData.method);
-    setEmissionResult(emissions);
 
-    console.log(formData);
+    if (!formData.method || formData.distance <= 0) {
+      toastr.error("Please select a travel method and enter a valid distance.", "Validation Error");
+      return;
+    }
+
+    const emissions = parseFloat(calculateEmissions(formData.distance, formData.method));
+    const distance = parseFloat(formData.distance);
+  
+    const existingEntryIndex = leaderboard.findIndex(entry => entry.name === formData.name);
+    
+    if (existingEntryIndex !== -1) {
+      const updatedEntry = { ...leaderboard[existingEntryIndex] };
+      updatedEntry.distance += distance;
+      updatedEntry.emissions += emissions;
+      setLeaderboard(leaderboard.map((entry, index) => index === existingEntryIndex ? updatedEntry : entry));
+    } else {
+      const newEntry = {
+        name: formData.name,
+        method: formData.method,
+        distance: distance,
+        emissions: emissions,
+      };
+  
+      const updatedLeaderboard = [...leaderboard, newEntry];
+      setLeaderboard(updatedLeaderboard);
+    }
+  
+    setLeaderboard(prevLeaderboard => prevLeaderboard.sort((a, b) => a.emissions - b.emissions));
+    toastr.success("Your submission was successful!", "Success");
+
   };
 
   const calculateEmissions = (distance, method) => {
@@ -45,12 +75,24 @@ function EmissionForm() {
     
     return CO2EmissionsKg.toFixed(3);
   };
-  
 
   return (
     <div>
-      <h1>GoEco - San Francisco</h1> {/* Title */}
+      <h1>GoEco - San Francisco</h1>
+      {/* Form display */}
       <form onSubmit={handleSubmit}>
+        <div>
+          <label>
+            Name:
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Enter your name"
+            />
+          </label>
+        </div>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <label style={{ marginRight: '10px' }}>
             Distance:
@@ -64,15 +106,6 @@ function EmissionForm() {
           />
           <p style={{ marginLeft: '10px' }}>Miles</p>
         </div>
-        {/* <label>
-          To:
-          <input
-            type="text"
-            name="to"
-            value={formData.to}
-            onChange={handleChange}
-          />
-        </label> */}
         <label>
           Travel Method:
           <select name="method" value={formData.method} onChange={handleChange}>
@@ -85,7 +118,15 @@ function EmissionForm() {
         </label>
         <button type="submit">Submit</button>
       </form>
-      {emissionResult && <p>CO2 Emissions (kg): {emissionResult}</p>}
+      {emissionResult && <p>CO2 Emissions (g): {emissionResult}</p>}
+
+      {/* Leaderboard display */}
+      <h2>Leaderboard</h2>
+      <ol>
+        {leaderboard.map((entry, index) => (
+          <li key={index}>{`${entry.name}: ${entry.emissions} g CO2, ${entry.distance} miles`}</li>
+        ))}
+      </ol>
     </div>
   );
 }
