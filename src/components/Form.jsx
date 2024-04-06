@@ -10,7 +10,8 @@ function EmissionForm() {
   const vehicleEfficiencies = {
     car: 25, 
     bike: 0,
-    bus: 15,
+    muni: 15,
+    caltrain: 2.5
   };
 
   const [emissionResult, setEmissionResult] = useState(null);
@@ -38,13 +39,14 @@ function EmissionForm() {
 
   return (
     <div>
+      <h1>GoEco - San Francisco</h1> {/* Title */}
       <form onSubmit={handleSubmit}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <label style={{ marginRight: '10px' }}>
             Distance:
           </label>
           <input
-            type="number" // Changed to number to ensure numerical input
+            type="number"
             name="distance"
             value={formData.distance}
             onChange={handleChange}
@@ -68,7 +70,8 @@ function EmissionForm() {
             <option value="walk">Walk</option>
             <option value="car">Car</option>
             <option value="bike">Bike</option>
-            <option value="bus">Bus</option>
+            <option value="muni">Muni</option>
+            <option value="caltrain">Caltrain</option>
           </select>
         </label>
         <button type="submit">Submit</button>
