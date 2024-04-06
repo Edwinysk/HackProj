@@ -1,51 +1,22 @@
 import React, { useState } from 'react';
 import './App.css';
+import { Tweet } from 'react-twitter-widgets';
+
 
 function App() {
   const [queue, setQueue] = useState([]);
   const [input, setInput] = useState('');
 
-  const enqueue = () => {
-    if (input) {
-      setQueue([...queue, input]);
-      setInput(''); // Clear input after enqueue
-    }
-  };
-
-  const dequeue = () => {
-    if (queue.length > 0) {
-      setQueue(queue.slice(1));
-    }
-  };
-
-  const instagramPost = () => {
+  const TweetButton = () => {
+    const tweetText = "Check out this awesome tweet!"; // Set your tweet text here
     
-  }
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h2>Simple Queue System</h2>
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Enter item"
-        />
-        <button onClick={enqueue}>Enqueue</button>
-        <button onClick={dequeue} disabled={queue.length === 0}>
-          Dequeue
+    return (
+      <div>
+        <button onClick={() => window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`)}>
+          Tweet
         </button>
-        <h4>Queue:</h4>
-        <ul>
-          {queue.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-      </header>
-      <button onClick={enqueue}>Instagram</button>
-    </div>
-  );
-}
-
-export default App;
+      </div>
+    );
+  };
+  
+  export default TweetButton;
