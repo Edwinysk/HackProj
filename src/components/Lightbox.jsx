@@ -11,7 +11,6 @@ function Lightbox({ isOpen, onClose }) {
        <img src={GoEcopictalk} alt="Lightbox Top" className="lightbox-image" />
 
         <button className="lightbox-close" onClick={onClose}>START</button>
-        <button className="lightbox-close" onClick={onClose}>Start</button>
       </div>
     </div>
   );
