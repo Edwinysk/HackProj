@@ -137,8 +137,8 @@ function EmissionForm() {
           Travel Method:
           <select name="method" value={formData.method} onChange={handleChange}>
             <option value="">Select your travel method</option>
-            <option value="car">Car</option>
-            <option value="bike">Bike / Walk</option>
+            <option value="fuel car">Car</option>
+            <option value="walk / bike">Bike / Walk</option>
             <option value="muni">Muni</option>
             <option value="caltrain">Caltrain</option>
           </select>
