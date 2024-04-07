@@ -84,17 +84,17 @@ function EmissionForm() {
 }
 
 const calculateEmissions = (distance, method) => {
-  const kgPerGallon = 8.89;
-  let CO2EmissionsKg;
+  const gramPerGallon = 8890;
+  let CO2EmissionsGram;
 
   if (method === "car") {
-    CO2EmissionsKg = 0;
+    CO2EmissionsGram = 0;
   } else {
     const gallonsPerMile = fuelConsumption[method];
-    CO2EmissionsKg = distance * gallonsPerMile * kgPerGallon;
+    CO2EmissionsGram = distance * gallonsPerMile * gramPerGallon;
   }
 
-  return CO2EmissionsKg.toFixed(3);
+  return CO2EmissionsGram.toFixed(3);
 };
 
   return (
