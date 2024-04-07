@@ -37,7 +37,7 @@ const FacebookButton = styled(Button)`
 `;
 
 function SMButton() {
-  const tweetText = "I just mesured my carbon transport foot print!  Can you beat me?  Try at ecosf.com";
+  const tweetText = "I just measured my carbon transport footprint!  Can you beat me?  Try at goecosf.com";
 
   return (
     <div>

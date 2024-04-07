@@ -4,7 +4,7 @@ import skylineImage from "../asset/walking.png";
 function Skyline() {
   return (
     <div style={{ textAlign: "center"}}>
-      <img src={skylineImage} alt="Leaf" style={{ width: "100%", maxWidth: "1200px", height: "auto" }} />
+      <img src={skylineImage} alt="Leaf" style={{ width: "100%", maxWidth: "1px", height: "auto" }} />
     </div>
   );
 }
