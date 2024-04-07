@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import Lightbox from "./components/Lightbox.jsx";
 import "./App.css";
 import EmissionForm from "./components/Form";
+import SMButtons from "./components/SMButtons";
 import Skyline from "./components/Skyline";
 
 function App() {
@@ -17,6 +18,9 @@ function App() {
         <EmissionForm />
       </header>
       <footer className="App-footer">
+      <div className="container">
+          <SMButtons/>
+        </div>
         <div className="container">
           <Skyline />
         </div>
