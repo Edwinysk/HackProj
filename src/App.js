@@ -1,38 +1,20 @@
-import React, { Component } from 'react';
-import './App.css';
-import EmissionForm from './components/Form';
-import SMButtons from './SMButtons';
+import React from "react";
+import "./App.css";
+import EmissionForm from "./components/Form";
+import SMButtons from "./components/SMButtons";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      article: {
-        title: 'Default Title' // Default value for the article title
-      }
-    };
-  }
-
-  
-
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <Helmet>
-            <title>{this.state.article.title}</title>
-            <meta name="description" content="Measure your carbon footprint!" />
-          </Helmet>
-          <EmissionForm />
-
-        </header>
-        <SMButtons 
-        url="https://example.com" // URL you want to share
-        text="Check out this awesome content!" // Text you want to share
-        />
-      </div>
-    );
-  }
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <EmissionForm />
+      </header>
+      <footer className="App-footer">
+        <div className="container">{/* Footer content goes here */}</div>
+        <SMButtons/>
+      </footer>
+    </div>
+  );
 }
 
 export default App;
