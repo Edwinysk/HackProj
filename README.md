@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+# GoEco San Francisco
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+GoEco San Francisco is an interactive web application designed to raise awareness about the carbon footprint associated with different modes of transportation. By entering the distance traveled and selecting the mode of transportation, users can calculate and compare the carbon emissions they save by choosing more sustainable travel methods over driving a fuel car.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Emission Calculator**: Allows users to input the distance traveled and select a transportation method to see the CO2 emissions saved.
+- **Interactive Lightbox**: Showcases a friendly character that motivates users to participate and contribute to a greener environment.
+- **Social Media Integration**: Users can share their results and challenge friends on Twitter and Facebook to save emissions.
+- **Leaderboard**: Displays a leaderboard of users who have saved the most emissions, encouraging a bit of friendly competition.
 
-### `npm start`
+## How It Works
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Enter your name and the distance you've traveled.
+2. Choose your method of transportation from the available options: Fuel Car, Bike/Walk, Muni, and Bart.
+3. Submit the form to see your CO2 emissions savings displayed.
+4. Share your achievement on social media and see your rank on the leaderboard.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Technologies Used
 
-### `npm test`
+- React
+- Bootstrap for styling
+- Toastr for notifications
+- React-Share for social media sharing functionality
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Setup and Installation
 
-### `npm run build`
+1. Clone the repository.
+2. Install the dependencies using `npm install`.
+3. Start the development server with `npm start`.
+4. To build the application for production, use `npm run build`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Contributing
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+We encourage public contributions! Please follow the standard Fork & Pull Request workflow to submit your changes for review.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Feedback
 
-### `npm run eject`
+Any feedback or suggestions are welcome. Please open an issue if you have feedback, questions, or suggestions for improvement.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## License
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+This project is open source and available under the [MIT License](LICENSE).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
