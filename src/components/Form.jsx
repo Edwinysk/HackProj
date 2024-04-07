@@ -14,14 +14,13 @@ function EmissionForm() {
   const fuelConsumption = {
     car: 0,
     bike: 0.4,
-    muni: 0.052,
-    bart: 0.147,
+    muni: 0.147,
+    bart: 0.052,
   };
 
   const [emissionResult] = useState(null);
   const [leaderboard, setLeaderboard] = useState([]);
-  const [sortOrder] = useState('des');
-
+  const [sortOrder] = useState("des");
 
   const handleChange = (event) => {
     const {name, value} = event.target;
@@ -73,14 +72,14 @@ function EmissionForm() {
     }
 
     setLeaderboard((prevLeaderboard) => {
-      const isAscending = sortOrder === 'asc';
+      const isAscending = sortOrder === "asc";
       const sortedLeaderboard = prevLeaderboard.sort((a, b) => {
         const sortVal = a.emissions - b.emissions;
         return isAscending ? sortVal : -sortVal;
       });
       return [...sortedLeaderboard];
     });
-    
+
     toastr.success("Your submission was successful!", "Success");
   };
 
@@ -92,7 +91,7 @@ function EmissionForm() {
       CO2EmissionsKg = 0;
     } else {
       const gallonsPerMile = fuelConsumption[method];
-      CO2EmissionsKg = distance * gallonsPerMile * kgPerGallon ;
+      CO2EmissionsKg = distance * gallonsPerMile * kgPerGallon;
     }
 
     return CO2EmissionsKg.toFixed(3);
@@ -105,50 +104,75 @@ function EmissionForm() {
           src={headerpic}
           alt="GoEco Logo"
           className="logo display-4"
-          style={{width: "500px", height: "auto"}}
+          style={{width: "700px", height: "auto"}}
         />
       </div>
-      {/* Form display */}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>
-            Name: {" "} 
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="Enter your name"
-            />
-          </label>
+
+      {/* Form display*/}
+      <div className="container my-5">
+        <div className="card">
+          <div className="card-body">
+            <form onSubmit={handleSubmit} className="text-black">
+              <div className="form-group">
+                <label htmlFor="nameInput" className="form-label">
+                  Name:
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Enter your name"
+                  className="form-control"
+                  id="nameInput"
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="distanceInput" className="form-label">
+                  Distance:
+                </label>
+                <input
+                  type="number"
+                  name="distance"
+                  value={formData.distance}
+                  onChange={handleChange}
+                  placeholder="Enter distance in miles"
+                  className="form-control"
+                  id="distanceInput"
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="methodSelect" className="form-label">
+                  Transportation Method:
+                </label>
+                <select
+                  name="method"
+                  value={formData.method}
+                  onChange={handleChange}
+                  className="form-control"
+                  id="methodSelect">
+                  <option value="">Select your travel method</option>
+                  <option value="car">Fuel Car</option>
+                  <option value="bike">Bike / Walk</option>
+                  <option value="muni">Muni</option>
+                  <option value="bart">Bart</option>
+                </select>
+              </div>
+              <button type="submit" className="btn btn-primary">
+                Submit
+              </button>
+              {emissionResult && (
+                <p className="emission-result">
+                  CO2 Emissions (g): {emissionResult}
+                </p>
+              )}
+            </form>
+          </div>
         </div>
-        <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
-          <label style={{marginRight: "10px"}}>Distance:</label>
-          <input
-            type="number"
-            name="distance"
-            value={formData.distance}
-            onChange={handleChange}
-            placeholder="Enter distance in miles"
-          />
-          <p style={{marginLeft: "10px"}}>Miles</p>
-        </div>
-        <label>
-          Transportation Method: {" "}
-          <select name="method" value={formData.method} onChange={handleChange}>
-            <option value="">Select your travel method</option>
-            <option value="car">Fuel Car</option>
-            <option value="bike">Bike / Walk</option>
-            <option value="muni">Muni</option>
-            <option value="bart">Bart</option>
-          </select>
-        </label>
-        <button type="submit">Submit</button>
-      </form>
-      {emissionResult && <p>CO2 Emissions (g): {emissionResult}</p>}
+      </div>
 
       {/* Leaderboard display */}
-      <h2 style={{ marginTop: "220px" }}>Leaderboard</h2>
+      <h2 style={{marginTop: "220px"}} className="leaderboard-title">Leaderboard</h2>
       <table className="leaderboard-table">
         <thead>
           <tr>
