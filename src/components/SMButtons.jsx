@@ -38,7 +38,7 @@ const FacebookButton = styled(Button)`
 `;
 
 function SMButton() {
-  const tweetText = "I saved " + "" + " grams of carbon dioxide by " + "" + "!  Can you beat me?  Record your alternate transport methods at ecosf.com"; // Set your tweet text here
+  const tweetText = "I just mesured my carbon transport foot print!  Can you beat me?  Try at ecosf.com"; // Set your tweet text here
 
   return (
     <div>
