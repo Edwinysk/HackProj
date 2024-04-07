@@ -12,7 +12,7 @@ function ParentComponent() {
   return (
     <div>
       <EmissionForm updateEmissionData={updateEmissionData} />
-      <SMButtons emissionData={emissionData} /> {/* Pass emissionData to SMButtons */}
+      <SMButtons emissionData={emissionData} /> {}
     </div>
   );
 }
