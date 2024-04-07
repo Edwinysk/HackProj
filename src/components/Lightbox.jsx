@@ -9,6 +9,8 @@ function Lightbox({ isOpen, onClose }) {
     <div className="lightbox-backdrop" onClick={onClose}>
       <div className="lightbox-content" onClick={e => e.stopPropagation()}>
        <img src={GoEcopictalk} alt="Lightbox Top" className="lightbox-image" />
+
+        <button className="lightbox-close" onClick={onClose}>START</button>
         <button className="lightbox-close" onClick={onClose}>Start</button>
       </div>
     </div>
