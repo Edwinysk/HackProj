@@ -1,12 +1,10 @@
-// In EmissionForm.jsx
-
-import React, { useState } from "react";
+import React, {useState} from "react";
 import toastr from "toastr";
 import "toastr/build/toastr.min.css";
 import "../style/form.css";
 import headerpic from "../asset/GoEco_-_1.png";
 
-function EmissionForm({ updateEmissionData }) {
+function EmissionForm() {
   const [formData, setFormData] = useState({
     distance: "",
     method: "",
@@ -20,14 +18,12 @@ function EmissionForm({ updateEmissionData }) {
     bart: 0.052,
   };
 
-
   const [emissionResult] = useState(null);
   const [leaderboard, setLeaderboard] = useState([]);
   const [sortOrder] = useState("des");
 
-
   const handleChange = (event) => {
-    const { name, value } = event.target;
+    const {name, value} = event.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: value,
@@ -50,8 +46,26 @@ function EmissionForm({ updateEmissionData }) {
     );
     const distance = parseFloat(formData.distance);
 
-    updateEmissionData({ emissions, distance });
+    const existingEntryIndex = leaderboard.findIndex(
+      (entry) => entry.name === formData.name
+    );
 
+    if (existingEntryIndex !== -1) {
+      const updatedEntry = {...leaderboard[existingEntryIndex]};
+      updatedEntry.distance += distance;
+      updatedEntry.emissions += emissions;
+      setLeaderboard(
+        leaderboard.map((entry, index) =>
+          index === existingEntryIndex ? updatedEntry : entry
+        )
+      );
+    } else {
+      const newEntry = {
+        name: formData.name,
+        method: formData.method,
+        distance: distance,
+        emissions: emissions,
+      };
 
       const updatedLeaderboard = [...leaderboard, newEntry];
       setLeaderboard(updatedLeaderboard);
@@ -65,7 +79,6 @@ function EmissionForm({ updateEmissionData }) {
       });
       return [...sortedLeaderboard];
     });
-
 
     toastr.success("Your submission was successful!", "Success");
   };
@@ -91,7 +104,6 @@ function EmissionForm({ updateEmissionData }) {
           src={headerpic}
           alt="GoEco Logo"
           className="logo display-4"
-
           style={{width: "700px", height: "auto"}}
         />
       </div>
@@ -189,7 +201,6 @@ function EmissionForm({ updateEmissionData }) {
           )}
         </tbody>
       </table>
-
     </div>
   );
 }
