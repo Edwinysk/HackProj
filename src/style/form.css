@@ -1,65 +1,94 @@
 .leaderboard-container {
-    max-width: 800px;
-    margin: auto;
-    background-color: #fff;
-    padding: 1rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .leaderboard-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
-  }
-  
-  .leaderboard-table th,
-  .leaderboard-table td {
-    text-align: left;
-    padding: 12px 8px;
-    border-bottom: 1px solid #ccc;
-  }
-  
-  /* Blue header styles */
-  .leaderboard-table thead th {
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
+  max-width: 800px;
+  margin: auto;
+  background-color: #fff;
+  padding: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+  text-align: left;
+  padding: 12px 8px;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Blue header styles */
+.leaderboard-table thead th {
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Bottom padding */
+.leaderboard-container {
+  padding-bottom: 100px;
+}
+
+/* Style for user images */
+.user-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+/* Hover effect for rows */
+.leaderboard-table tbody tr:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Hover effect for rows: words*/
+.leaderboard-table tbody tr:hover td {
+  color: #000000;
+}
+
+/* Header button styles */
+.leaderboard-table th button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+/* Leaderboard title */
+.leaderboard-title {
+    font-size: 50px;
+    font-weight: bold;
   }
 
-  /* Bottom padding */
-  .leaderboard-container {
-    padding-bottom: 100px; 
+/* Font size */
+.container {
+  font-size: 1 rem;
+}
+
+/* Form css */
+.card {
+  background-color: #ececec; 
+  color: black; 
+  margin-top: 4rem; 
+  margin-bottom: 4rem; 
+  padding: 5rem; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.emission-result {
+  margin-top: 1rem; 
+}
+
+.form-group {
+    margin-bottom: 2rem;
   }
-  
-  /* Style for user images */
-  .user-image {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 10px;
-  }
-  
-  /* Hover effect for rows */
-  .leaderboard-table tbody tr:hover {
-    background-color: #ffffff;
-    color: #000000;
-  }
-  
-   /* Hover effect for rows: words*/
-  .leaderboard-table tbody tr:hover td {
-    color: #000000; 
-  }
-  
-  /* Header button styles */
-  .leaderboard-table th button {
-    background: none;
-    color: inherit;
-    border: none;
-    padding: 0;
-    font: inherit;
-    cursor: pointer;
-    outline: inherit;
-  }
-  
+
   
