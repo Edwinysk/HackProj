@@ -10,7 +10,7 @@ function Lightbox({ children, isOpen, onClose }) {
       <div className="lightbox-content" onClick={e => e.stopPropagation()}>
        <img src={GoEcopictalk} alt="Lightbox Top" className="lightbox-image" />
         {children}
-        <button className="lightbox-close" onClick={onClose}>Start</button>
+        <button className="lightbox-close" onClick={onClose}>START</button>
       </div>
     </div>
   );
