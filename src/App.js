@@ -22,8 +22,9 @@ function App() {
           <SMButtons/>
         </div>
         <div className="container">
-          <Skyline />
+          
         </div>
+        <Skyline />
       </footer>
     </div>
   );
