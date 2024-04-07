@@ -19,7 +19,9 @@ function App() {
         <EmissionForm />
       </header>
       <footer className="App-footer">
-        <div className="container"></div><Skyline/>
+        <div className="container">
+          <Skyline/>
+        </div>
       </footer>
     </div>
   );
