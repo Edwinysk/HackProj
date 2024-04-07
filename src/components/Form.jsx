@@ -1,12 +1,10 @@
-// In EmissionForm.jsx
-
 import React, {useState} from "react";
 import toastr from "toastr";
 import "toastr/build/toastr.min.css";
 import "../style/form.css";
 import headerpic from "../asset/GoEco_-_1.png";
 
-function EmissionForm({updateEmissionData}) {
+function EmissionForm() {
   const [formData, setFormData] = useState({
     distance: "",
     method: "",
@@ -48,20 +46,39 @@ function EmissionForm({updateEmissionData}) {
     );
     const distance = parseFloat(formData.distance);
 
-    updateEmissionData({emissions, distance});
+    const existingEntryIndex = leaderboard.findIndex(
+      (entry) => entry.name === formData.name
+    );
+
+    if (existingEntryIndex !== -1) {
+      const updatedEntry = {...leaderboard[existingEntryIndex]};
+      updatedEntry.distance += distance;
+      updatedEntry.emissions += emissions;
+      setLeaderboard(
+        leaderboard.map((entry, index) =>
+          index === existingEntryIndex ? updatedEntry : entry
+        )
+      );
+    } else {
+      const newEntry = {
+        name: formData.name,
+        method: formData.method,
+        distance: distance,
+        emissions: emissions,
+      };
 
     const updatedLeaderboard = [...leaderboard, newEntry];
     setLeaderboard(updatedLeaderboard);
   };
 
-  setLeaderboard((prevLeaderboard) => {
-    const isAscending = sortOrder === "asc";
-    const sortedLeaderboard = prevLeaderboard.sort((a, b) => {
-      const sortVal = a.emissions - b.emissions;
-      return isAscending ? sortVal : -sortVal;
+    setLeaderboard((prevLeaderboard) => {
+      const isAscending = sortOrder === "asc";
+      const sortedLeaderboard = prevLeaderboard.sort((a, b) => {
+        const sortVal = a.emissions - b.emissions;
+        return isAscending ? sortVal : -sortVal;
+      });
+      return [...sortedLeaderboard];
     });
-    return [...sortedLeaderboard];
-  });
 
   toastr.success("Your submission was successful!", "Success");
 }
@@ -80,16 +97,16 @@ const calculateEmissions = (distance, method) => {
   return CO2EmissionsKg.toFixed(3);
 };
 
-return (
-  <div>
-    <div className="logo-container">
-      <img
-        src={headerpic}
-        alt="GoEco Logo"
-        className="logo display-4"
-        style={{width: "700px", height: "auto"}}
-      />
-    </div>
+  return (
+    <div>
+      <div className="logo-container">
+        <img
+          src={headerpic}
+          alt="GoEco Logo"
+          className="logo display-4"
+          style={{width: "700px", height: "auto"}}
+        />
+      </div>
 
     {/* Form display*/}
     <div className="container my-5">
@@ -154,39 +171,38 @@ return (
       </div>
     </div>
 
-    {/* Leaderboard display */}
-    <h2 style={{marginTop: "220px"}} className="leaderboard-title">
-      Leaderboard
-    </h2>
-    <table className="leaderboard-table">
-      <thead>
-        <tr>
-          <th>#Rank |</th>
-          <th>Name |</th>
-          <th>Distance Traveled |</th>
-          <th>CO2 Emissions Saved</th>
-        </tr>
-      </thead>
-      <tbody>
-        {leaderboard.length > 0 ? (
-          leaderboard.map((entry, index) => (
-            <tr key={index}>
-              <td>{index + 1}</td>
-              <td>{entry.name}</td>
-              <td>{entry.distance} miles</td>
-              <td>{entry.emissions} g CO2</td>
-            </tr>
-          ))
-        ) : (
+      {/* Leaderboard display */}
+      <h2 style={{marginTop: "220px"}} className="leaderboard-title">Leaderboard</h2>
+      <table className="leaderboard-table">
+        <thead>
           <tr>
-            <td colSpan="4" className="leaderboard-empty">
-              The leaderboard is currently empty. Add something to it!
-            </td>
+            <th>#Rank |</th>
+            <th>Name |</th>
+            <th>Distance Traveled |</th>
+            <th>CO2 Emissions Saved</th>
           </tr>
-        )}
-      </tbody>
-    </table>
-  </div>
-);
+        </thead>
+        <tbody>
+          {leaderboard.length > 0 ? (
+            leaderboard.map((entry, index) => (
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td>{entry.name}</td>
+                <td>{entry.distance} miles</td>
+                <td>{entry.emissions} g CO2</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="4" className="leaderboard-empty">
+                The leaderboard is currently empty. Add something to it!
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    </div>
+  );
+}
 
 export default EmissionForm;
