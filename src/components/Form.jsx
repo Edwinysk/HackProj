@@ -1,10 +1,12 @@
-import React, {useState} from "react";
+// In EmissionForm.jsx
+
+import React, { useState } from "react";
 import toastr from "toastr";
 import "toastr/build/toastr.min.css";
 import "../style/form.css";
 import headerpic from "../asset/GoEco_-_1.png";
 
-function EmissionForm() {
+function EmissionForm({ updateEmissionData }) {
   const [formData, setFormData] = useState({
     distance: "",
     method: "",
@@ -18,12 +20,14 @@ function EmissionForm() {
     bart: 0.052,
   };
 
+
   const [emissionResult] = useState(null);
   const [leaderboard, setLeaderboard] = useState([]);
   const [sortOrder] = useState("des");
 
+
   const handleChange = (event) => {
-    const {name, value} = event.target;
+    const { name, value } = event.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: value,
@@ -46,26 +50,8 @@ function EmissionForm() {
     );
     const distance = parseFloat(formData.distance);
 
-    const existingEntryIndex = leaderboard.findIndex(
-      (entry) => entry.name === formData.name
-    );
+    updateEmissionData({ emissions, distance });
 
-    if (existingEntryIndex !== -1) {
-      const updatedEntry = {...leaderboard[existingEntryIndex]};
-      updatedEntry.distance += distance;
-      updatedEntry.emissions += emissions;
-      setLeaderboard(
-        leaderboard.map((entry, index) =>
-          index === existingEntryIndex ? updatedEntry : entry
-        )
-      );
-    } else {
-      const newEntry = {
-        name: formData.name,
-        method: formData.method,
-        distance: distance,
-        emissions: emissions,
-      };
 
       const updatedLeaderboard = [...leaderboard, newEntry];
       setLeaderboard(updatedLeaderboard);
@@ -79,6 +65,7 @@ function EmissionForm() {
       });
       return [...sortedLeaderboard];
     });
+
 
     toastr.success("Your submission was successful!", "Success");
   };
@@ -104,6 +91,7 @@ function EmissionForm() {
           src={headerpic}
           alt="GoEco Logo"
           className="logo display-4"
+
           style={{width: "700px", height: "auto"}}
         />
       </div>
@@ -201,6 +189,7 @@ function EmissionForm() {
           )}
         </tbody>
       </table>
+
     </div>
   );
 }
