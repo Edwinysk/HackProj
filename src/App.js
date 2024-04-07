@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Lightbox from './components/Lightbox.jsx';
 import "./App.css";
 import EmissionForm from "./components/Form";
+import Skyline from "./components/Skyline";
 
 function App() {
 
@@ -18,7 +19,7 @@ function App() {
         <EmissionForm />
       </header>
       <footer className="App-footer">
-        <div className="container">{/* Footer content goes here */}</div>
+        <div className="container"></div><Skyline/>
       </footer>
     </div>
   );

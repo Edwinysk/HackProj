@@ -14,20 +14,20 @@
 }
 
 .App-header {
-  background-color: #4d955b;
-  min-height: 100vh;
+  background-color: #87a24f;
+  min-height: 120vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(16px + 2vmin);
   color: white;
 }
 
 .App-footer {
-  padding-bottom: 200px;
+  padding-top: 260px;
   width: 100%;
-  background-color: #4d955b;
+  background-color: #87a24f;
 }
 
 .App-link {

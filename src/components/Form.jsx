@@ -15,7 +15,7 @@ function EmissionForm() {
     car: 0,
     bike: 0.4,
     muni: 0.052,
-    caltrain: 0.147,
+    bart: 0.147,
   };
 
   const [emissionResult] = useState(null);
@@ -105,14 +105,14 @@ function EmissionForm() {
           src={headerpic}
           alt="GoEco Logo"
           className="logo display-4"
-          style={{width: "600px", height: "auto"}}
+          style={{width: "500px", height: "auto"}}
         />
       </div>
       {/* Form display */}
       <form onSubmit={handleSubmit}>
         <div>
           <label>
-            Name:
+            Name: {" "} 
             <input
               type="text"
               name="name"
@@ -122,25 +122,25 @@ function EmissionForm() {
             />
           </label>
         </div>
-        <div style={{display: "flex", alignItems: "center"}}>
+        <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
           <label style={{marginRight: "10px"}}>Distance:</label>
           <input
             type="number"
             name="distance"
             value={formData.distance}
             onChange={handleChange}
-            placeholder="Enter distance"
+            placeholder="Enter distance in miles"
           />
           <p style={{marginLeft: "10px"}}>Miles</p>
         </div>
         <label>
-          Travel Method:
+          Transportation Method: {" "}
           <select name="method" value={formData.method} onChange={handleChange}>
             <option value="">Select your travel method</option>
-            <option value="car">Car</option>
+            <option value="car">Fuel Car</option>
             <option value="bike">Bike / Walk</option>
             <option value="muni">Muni</option>
-            <option value="caltrain">Caltrain</option>
+            <option value="bart">Bart</option>
           </select>
         </label>
         <button type="submit">Submit</button>
@@ -148,13 +148,13 @@ function EmissionForm() {
       {emissionResult && <p>CO2 Emissions (g): {emissionResult}</p>}
 
       {/* Leaderboard display */}
-      <h2>Leaderboard</h2>
+      <h2 style={{ marginTop: "220px" }}>Leaderboard</h2>
       <table className="leaderboard-table">
         <thead>
           <tr>
-            <th>#Rank</th>
-            <th>Username</th>
-            <th>Distance Traveled</th>
+            <th>#Rank |</th>
+            <th>Name |</th>
+            <th>Distance Traveled |</th>
             <th>CO2 Emissions Saved</th>
           </tr>
         </thead>
@@ -171,7 +171,7 @@ function EmissionForm() {
           ) : (
             <tr>
               <td colSpan="4" className="leaderboard-empty">
-                The leaderboard is empty currently. Add something to it!
+                The leaderboard is currently empty. Add something to it!
               </td>
             </tr>
           )}
